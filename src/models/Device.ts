@@ -1,3 +1,3 @@
 export abstract class Device {
-    abstract getLogData(): string;
+	abstract getLogData(): string;
 }

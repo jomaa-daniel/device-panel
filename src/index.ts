@@ -1,75 +1,68 @@
-import express, { Request, Response } from 'express';
+import { AutoRouter } from 'itty-router';
 import { LivingRoom } from './groups/LivingRoom';
 import { Brightness } from './models/Light';
 
-const app = express();
 const PORT = 80;
+const router = AutoRouter();
 const living_room = new LivingRoom();
 
-// Basic route
-app.get('/turnOnLivingRoom', async (req: Request, res: Response) => {
-    try {
-        await living_room.on();
-        res.send('Turned Living Room On');
-    } catch (e) {
-        res.status(500).send(JSON.stringify(e));
-    }
+router.get('/turnOnLivingRoom', async () => {
+	try {
+		await living_room.on();
+		return { status: 200, body: 'Turned Living Room On' };
+	} catch (e) {
+		return { status: 500, body: e };
+	}
 });
 
-app.get('/turnOffLivingRoom', async (req: Request, res: Response) => {
-    try {
-        await living_room.off();
-        res.send('Turned Living Room Off');
-    } catch (e) {
-        res.status(500).send(JSON.stringify(e));
-    }
+router.get('/turnOffLivingRoom', async () => {
+	try {
+		await living_room.off();
+		return { status: 200, body: 'Turned Living Room Off' };
+	} catch (e) {
+		return { status: 500, body: e };
+	}
 });
 
-app.get('/setLivingRoomBrightness25', async (req: Request, res: Response) => {
-    try {
-        await living_room.setBrightness(Brightness.B25);
-        res.send('Set Brightness 25');
-    } catch (e) {
-        res.status(500).send(JSON.stringify(e));
-    }
+router.get('/setLivingRoomBrightness25', async () => {
+	try {
+		await living_room.setBrightness(Brightness.B25);
+		return { status: 200, body: 'Set Brightness 25' };
+	} catch (e) {
+		return { status: 500, body: e };
+	}
 });
 
-app.get('/setLivingRoomBrightness50', async (req: Request, res: Response) => {
-    try {
-        await living_room.setBrightness(Brightness.B50);
-        res.send('Set Brightness 50');
-    } catch (e) {
-        res.status(500).send(JSON.stringify(e));
-    }
+router.get('/setLivingRoomBrightness50', async () => {
+	try {
+		await living_room.setBrightness(Brightness.B50);
+		return { status: 200, body: 'Set Brightness 50' };
+	} catch (e) {
+		return { status: 500, body: e };
+	}
 });
 
-app.get('/setLivingRoomBrightness75', async (req: Request, res: Response) => {
-    try {
-        await living_room.setBrightness(Brightness.B75);
-        res.send('Set Brightness 75');
-    } catch (e) {
-        res.status(500).send(JSON.stringify(e));
-    }
+router.get('/setLivingRoomBrightness75', async () => {
+	try {
+		await living_room.setBrightness(Brightness.B75);
+		return { status: 200, body: 'Set Brightness 75' };
+	} catch (e) {
+		return { status: 500, body: e };
+	}
 });
 
-app.get('/setLivingRoomBrightness100', async (req: Request, res: Response) => {
-    try {
-        await living_room.setBrightness(Brightness.B100);
-        res.send('Set Brightness 100');
-    } catch (e) {
-        res.status(500).send(JSON.stringify(e));
-    }
+router.get('/setLivingRoomBrightness100', async () => {
+	try {
+		await living_room.setBrightness(Brightness.B100);
+		return { status: 200, body: 'Set Brightness 100' };
+	} catch (e) {
+		return { status: 500, body: e };
+	}
 });
 
-app.get('/', async (req: Request, res: Response) => {
-    try {
-        res.send('Actions: /turnOnLivingRoom /turnOffLivingRoom /setLivingRoomBrightness25 /setLivingRoomBrightness50 /setLivingRoomBrightness75 /setLivingRoomBrightness100');
-    } catch (e) {
-        res.status(500).send(JSON.stringify(e));
-    }
-});
+router.get('/', () => ({
+	status: 200,
+	body: 'Actions: /turnOnLivingRoom /turnOffLivingRoom /setLivingRoomBrightness25 /setLivingRoomBrightness50 /setLivingRoomBrightness75 /setLivingRoomBrightness100',
+}));
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+export default { ...router };
