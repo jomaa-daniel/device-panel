@@ -1,4 +1,4 @@
-import { env } from 'node:process';
+import { env as cloudflareEnv } from 'cloudflare:workers';
 
 // Define the request data structure
 interface Capability {
@@ -28,7 +28,7 @@ type ColonSeparatedHex =
 	| `${string}:${string}:${string}:${string}:${string}:${string}:${string}:${string}`
 	| OtherHex;
 
-const api_key = env.GOVEE_API_KEY as string;
+const api_key = cloudflareEnv.GOVEE_API_KEY;
 
 export { CapabilityType, api_key };
 export type { Capability, Payload, RequestData, ColonSeparatedHex };

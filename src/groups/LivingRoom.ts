@@ -9,7 +9,8 @@ const getGoveeLights = (): Light[] => {
 		new GoveeLight('H6006', 'C9:3B:60:74:F4:D8:18:68', 'Leather shade Bulb 1'),
 		new GoveeLight('H6006', 'D7:2F:60:74:F4:DF:49:18', 'Leather lamp bulb 2'),
 		new GoveeLight('H61A0', 'F1:B3:60:74:F4:E4:7B:29', 'Kitchen'),
-		new GoveeLight('H600B', 'A8:46:74:06:CC:84', 'CredenzaLamp'),
+		new GoveeLight('H600B', 'F3:F7:A8:46:74:06:CC:84', 'CredenzaLamp'),
+		new GoveeLight('H6006', '4D:9A:60:74:F4:F2:75:DE', 'LivingRoomOrb'),
 	];
 };
 
